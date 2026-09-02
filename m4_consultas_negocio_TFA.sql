@@ -286,18 +286,32 @@ FROM (
 
 ORDER BY mes;
 
+-- Consulta auxiliar para calcular el promedio mensual global---
+SELECT 
+    SUM(total_mes) AS facturacion_total_global,
+    COUNT(*) AS cantidad_meses,
+    AVG(total_mes) AS promedio_mensual_global
+FROM (
+    SELECT 
+        MONTH(fecha) AS mes, 
+        SUM(cantidad * precio) AS total_mes
+    FROM FactVentas
+    GROUP BY MONTH(fecha)
+) AS ventas_por_mes;
+
+
 -- =========================================================
 -- HALLAZGOS
 -- =========================================================
 
 -- 1. Enero fue el mes con mayor facturación, con un total de $1.900,
---    superando el promedio mensual de $1.026.
+--    superando el promedio mensual de $1.222.
 
 -- 2. Los productos 10 y 40 fueron los que generaron mayor facturación,
 --    con $1.500 cada uno.
 
 -- 3. Mayo fue el segundo mes con mayor facturación, con $1.350,
---    también por encima del promedio mensual de $1.026.
+--    también por encima del promedio mensual de $1.222.
 
 
 
