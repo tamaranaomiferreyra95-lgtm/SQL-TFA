@@ -299,13 +299,24 @@ FROM (
     GROUP BY MONTH(fecha)
 ) AS ventas_por_mes;
 
-
 -- =========================================================
 -- HALLAZGOS
 -- =========================================================
-
 -- 1. Enero fue el mes con mayor facturación, con un total de $1.900,
 --    superando el promedio mensual de $1.222.
+-- Detalle de facturación por mes:
+--   - Mes 1 (Enero):   $1.900,00 (Ventas 1 y 2)
+--   - Mes 2 (Febrero):   $900,00 (Ventas 3 y 4)
+--   - Mes 3 (Marzo):   $1.000,00 (Ventas 5 y 6)
+--   - Mes 4 (Abril):     $960,00 (Ventas 7 y 8)
+--   - Mes 5 (Mayo):    $1.350,00 (Ventas 9 y 10)
+-- 
+-- Total Facturado Global = $1.900 + $900 + $1.000 + $960 + $1.350 = $6.110,00
+-- Promedio Mensual = $6.110,00 / 5 meses = $1.222,00
+--
+-- Conclusión:
+-- 1. Enero ($1.900) y Mayo ($1.350) se posicionaron 'Por encima' del promedio mensual ($1.222).
+-- 2. Febrero ($900), Marzo ($1.000) y Abril ($960) quedaron 'Por debajo' del promedio.
 
 -- 2. Los productos 10 y 40 fueron los que generaron mayor facturación,
 --    con $1.500 cada uno.
